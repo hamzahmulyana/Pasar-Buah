@@ -1,49 +1,41 @@
 import mylib
 
-print('Selamat Datang di Pasar Buah!')
+daftarBuah = [
+    [0, 'Apel', 20, 10000],
+    [1, 'Jeruk', 15, 15000],
+    [2, 'Anggur', 25, 25000]
+]
 
-#Definisikan stock buah
-stockApel = 10
-stockJeruk = 8
-stockAnggur = 15
+def main():
+    listMenu = '''
+Selamat Datang di Pasar Buah!
 
-#Definisikan harga buah
-hargaApel = 10000
-hargaJeruk = 15000
-hargaAnggur = 20000
+List Menu:
+1. Show
+2. Add
+3. Delete
+4. Buy
+5. Exit
+'''
+    while True:
+        #menampilkan tampilan utama
+        print(listMenu)
+        
+        #meminta input opsi yang akan dijalankan
+        option = input("Masukan angka sesuai menu: ")
 
-#minta input jumlah buah dan hitung harga buah
-nApel, totalHargaApel = mylib.inputBuah(nama='Apel', stock=stockApel, harga=hargaApel)
-nJeruk, totalHargaJeruk = mylib.inputBuah(nama='Jeruk', stock=stockJeruk, harga=hargaJeruk)
-nAnggur, totalHargaAnggur = mylib.inputBuah(nama='Anggur', stock=stockAnggur, harga=hargaAnggur)
+        #menjalankan function yang dijalankan
+        if option == '1':
+            mylib.show(daftarBuah)
+        elif option == '2':
+            mylib.add(daftarBuah)
+        elif option == '3':
+            mylib.delete(daftarBuah)
+        elif option == '4':
+            mylib.buy(daftarBuah)
+        elif option == '5':
+            break
+        else:
+            print('Input anda salah. Silahkan input ulang')
 
-#Menghitung total harga keseluruhan
-totalHargaBelanja = totalHargaApel + totalHargaJeruk + totalHargaAnggur
-
-#Tampilkan rincian belanja
-print(f'''
-Detail Belanja
-
-Apel : {nApel} x {hargaApel} = {totalHargaApel}
-Jeruk : {nJeruk} x {hargaJeruk} = {totalHargaJeruk}
-Anggur : {nAnggur} x {hargaAnggur} = {totalHargaAnggur}
-
-Total Harga : {totalHargaBelanja}
-
-''')
-
-#Proses pembayaran
-while True:
-    #Input jumlah uang
-    bayar = int(input('Silahkan masukan uang anda: '))
-
-    #Hitung selihih antara bayar dengan total
-    selisih = totalHargaBelanja - bayar
-
-    #Bandingkan antara uang dengan total harga
-    if selisih > 0:
-        print(f'Uang anda kurang sebesar Rp.{selisih}')
-        continue
-    else:
-        print(f'''Terimakasih Uang kembalian anda sebesar Rp.{abs(selisih)}''')
-        break
+main()
